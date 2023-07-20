@@ -1,5 +1,6 @@
 import os
 from io import BytesIO
+import shutil
 
 import pytest
 from PIL import Image
@@ -118,3 +119,12 @@ def subscription_1(user, another_user):
         user=user,
         author=another_user
     )
+
+
+@pytest.fixture(autouse=True)
+def media_cleanup(request, settings):
+    yield
+    try:
+        shutil.rmtree(settings.MEDIA_ROOT)
+    except Exception:
+        pass
