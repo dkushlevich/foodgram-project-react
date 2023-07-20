@@ -40,10 +40,10 @@ class UserViewSet(DjoserUserViewSet):
         )
 
     @action(
-            detail=False,
-            methods=['get'],
-            pagination_class=LimitPagination,
-            permission_classes=(IsNotBannedPermission,)
+        detail=False,
+        methods=['get'],
+        pagination_class=LimitPagination,
+        permission_classes=(IsNotBannedPermission,)
     )
     def subscriptions(self, request):
         subscriptions = Subscription.objects.filter(user=request.user)
@@ -115,9 +115,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
 
     @action(
-            detail=False,
-            methods=['get'],
-            permission_classes=(IsNotBannedPermission,)
+        detail=False,
+        methods=['get'],
+        permission_classes=(IsNotBannedPermission,)
     )
     def download_shopping_cart(self, request):
         ingredients = (

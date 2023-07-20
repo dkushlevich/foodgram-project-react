@@ -14,7 +14,8 @@ class Command(BaseCommand):
             data = json.load(json_file)
             load_ingredients_data(data)
 
-        self.stdout.write(self.style.SUCCESS(
+        self.stdout.write(
+            self.style.SUCCESS(
                 settings.SUCCES_IMPORT_MESSAGE
             )
         )

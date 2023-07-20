@@ -17,7 +17,7 @@ class RecipeAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_display = ('name', 'author')
     fields = (
-        'name', 'author', 'tags', 'text',  'cooking_time', 'image',
+        'name', 'author', 'tags', 'text', 'cooking_time', 'image',
         'count_favorites'
     )
     readonly_fields = ('count_favorites',)
@@ -38,7 +38,7 @@ class IngredientRecipeAdmin(admin.ModelAdmin):
 
 
 class IngredientAdmin(admin.ModelAdmin):
-    search_fields = ('name',)
+    search_fields = ('name', )
     list_display = ('name', 'measurement_unit')
 
     def measurement_unit(self, obj):
