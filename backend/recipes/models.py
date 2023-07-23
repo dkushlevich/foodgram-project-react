@@ -30,7 +30,6 @@ class Ingredient(StringRepresentationMixin, models.Model):
     name = models.CharField(
         verbose_name='название',
         max_length=settings.MAX_LENGTH_INGREDIENT_NAME,
-        unique=True
     )
     measurement_unit = models.ForeignKey(
         Unit,
