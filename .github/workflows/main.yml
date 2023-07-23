@@ -9,6 +9,16 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    postgres:
+        image: postgres:13.10
+        env:
+          POSTGRES_USER: django_user
+          POSTGRES_PASSWORD: django_password
+          POSTGRES_DB: django_db
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - name: Check out code
       uses: actions/checkout@v3
@@ -21,6 +31,14 @@ jobs:
         python -m pip install --upgrade pip
         cd backend 
         pip install -r requirements.txt
-        pytest
     - name: Run Pytest
-      run: pytest
+      env:
+          POSTGRES_USER: django_user
+          POSTGRES_PASSWORD: django_password
+          POSTGRES_DB: django_db
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+      run: |
+        cd backend
+        pytest
+      
