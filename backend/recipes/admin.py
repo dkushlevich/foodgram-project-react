@@ -8,14 +8,15 @@ from recipes.models import (
 
 class IngredientInline(admin.TabularInline):
     model = IngredientRecipe
-    raw_id_fields = ('ingredient', )
+    min_num = 1
+    raw_id_fields = ('ingredient',)
 
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = (IngredientInline, )
     list_filter = ('author', 'tags')
     search_fields = ('name',)
-    list_display = ('name', 'author')
+    list_display = ('name', 'author', 'count_favorites')
     fields = (
         'name', 'author', 'tags', 'text', 'cooking_time', 'image',
         'count_favorites'

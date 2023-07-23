@@ -9,24 +9,24 @@ from api.views import (
 
 user_router = DefaultRouter()
 user_router.register(
-    r'users',
+    'users',
     UserViewSet,
     basename='users'
 )
 
 router = DefaultRouter()
 router.register(
-    r'tags',
+    'tags',
     TagViewSet,
     basename='tags'
 )
 router.register(
-    r'recipes',
+    'recipes',
     RecipeViewSet,
     basename='recipes'
 )
 router.register(
-    r'ingredients',
+    'ingredients',
     IngredientViewSet,
     basename='ingredients'
 )

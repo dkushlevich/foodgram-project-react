@@ -1,8 +1,10 @@
-from core.validators import hex_color_validator
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
+
+from core.validators import hex_color_validator
+
 
 User = get_user_model()
 
@@ -27,7 +29,8 @@ class Unit(StringRepresentationMixin, models.Model):
 class Ingredient(StringRepresentationMixin, models.Model):
     name = models.CharField(
         verbose_name='название',
-        max_length=settings.MAX_LENGTH_INGREDIENT_NAME
+        max_length=settings.MAX_LENGTH_INGREDIENT_NAME,
+        unique=True
     )
     measurement_unit = models.ForeignKey(
         Unit,
@@ -37,8 +40,14 @@ class Ingredient(StringRepresentationMixin, models.Model):
     )
 
     class Meta:
-        verbose_name = 'Ингридиент'
-        verbose_name_plural = 'Ингридиенты'
+        verbose_name = 'Ингредиент'
+        verbose_name_plural = 'Ингредиенты'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'measurement_unit'],
+                name='unique_ingredient',
+            ),
+        ]
 
     def __str__(self):
         return super().__str__() + f', {self.measurement_unit.name}'
@@ -166,4 +175,4 @@ class Recipe(StringRepresentationMixin, models.Model):
     class Meta:
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)

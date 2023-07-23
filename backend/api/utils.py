@@ -8,7 +8,7 @@ def collect_ingredientsrecipe_objects(ingredient_data, recipe):
     for data in ingredient_data:
         ingredient = get_object_or_404(
             Ingredient,
-            id=data.get('id')
+            id=data['ingredient']['id']
         )
         buffer.append(IngredientRecipe(
             recipe=recipe,

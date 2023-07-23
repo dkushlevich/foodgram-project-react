@@ -43,7 +43,7 @@ def load_ingredients_data(ingredient_data):
         unit_name = row['measurement_unit']
         with transaction.atomic():
             unit, _ = Unit.objects.get_or_create(name=unit_name)
-            Ingredient.objects.create(
+            Ingredient.objects.get_or_create(
                 name=ingredient_name,
                 measurement_unit=unit
             )

@@ -13,9 +13,9 @@ def hex_color_validator(value):
 
 
 def username_validator(value):
-    restr_symb = "".join(set(re.findall(r"[^\w.@+-]", value)))
+    restr_symb = ''.join(set(re.findall(r'[^\w.@+-]', value)))
     if restr_symb:
         raise ValidationError(
-            f"Недопустимые символы в имени пользователя: {restr_symb}"
+            f'Недопустимые символы в имени пользователя: {restr_symb}'
         )
     return value
