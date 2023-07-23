@@ -340,7 +340,7 @@ class TestRecipesAPI:
                 data=data,
                 content_type='application/json'
             )
-            assert response.status_code == HTTPStatus.NOT_FOUND, (
+            assert response.status_code == HTTPStatus.BAD_REQUEST, (
                 'Проверьте, что при POST-запросе с данными, содержащими '
                 'несуществующие id для тегов/ингредиентов возвращается '
                 'статус 404'

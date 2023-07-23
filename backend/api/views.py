@@ -33,7 +33,7 @@ class UserViewSet(DjoserUserViewSet):
 
     def destroy(self, *args, **kwargs):
         return Response(
-            {'detail": "Метод не разрешен.'},
+            {'detail': 'Метод DELETE не разрешен.'},
             status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
 
@@ -106,7 +106,14 @@ class RecipeViewSet(viewsets.ModelViewSet):
     filterset_class = RecipeFilter
     pagination_class = LimitPagination
     permission_classes = (IsAuthorAdminOrReadOnlyPermission,)
-    http_method_names = ['get', 'post', 'patch', 'delete']
+
+    def update(self, request, *args, **kwargs):
+        if not kwargs.get('partial'):
+            return Response(
+                {'detail': 'Метод PUT не разрешен.'},
+                status=status.HTTP_405_METHOD_NOT_ALLOWED
+            )
+        return super().update(request, *args, **kwargs)
 
     @action(
         detail=False,
@@ -134,7 +141,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         }
         pdf = render_to_pdf('api/pdf_template.html', context)
         response = HttpResponse(pdf, content_type='application/pdf')
-        response["Content-Disposition"] = (
+        response['Content-Disposition'] = (
             f'inline; filename="{request.user.username}ShopingCart.pdf"'
         )
         return response
