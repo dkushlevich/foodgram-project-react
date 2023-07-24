@@ -141,6 +141,7 @@ MAX_LENGTH_LAST_NAME = 150
 # Recipe model
 
 MAX_LENGTH_RECIPE_NAME = 200
+RECIPE_MIN_COOKING_TIME = 1
 
 # Ingredient model
 

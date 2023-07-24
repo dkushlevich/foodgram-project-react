@@ -130,7 +130,7 @@ class IngredientRecipe(models.Model):
         related_name='ingredients'
     )
 
-    amount = models.SmallIntegerField(
+    amount = models.PositiveSmallIntegerField(
         verbose_name='количество',
         validators=[MinValueValidator(
             limit_value=settings.INGREDIENT_MIN_AMOUNT,
@@ -160,8 +160,12 @@ class Recipe(StringRepresentationMixin, models.Model):
     )
     text = models.TextField(verbose_name='описание',)
     tags = models.ManyToManyField(Tag, verbose_name='теги',)
-    cooking_time = models.IntegerField(
+    cooking_time = models.PositiveSmallIntegerField(
         verbose_name='время приготовления (мин)',
+        validators=[MinValueValidator(
+            limit_value=settings.RECIPE_MIN_COOKING_TIME,
+            message='Время приготовления - целое положительное число'
+        )]
     )
     pub_date = models.DateTimeField(
         'дата публикации',
