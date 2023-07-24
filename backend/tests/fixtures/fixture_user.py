@@ -27,6 +27,7 @@ def another_user(django_user_model, password):
         password=password,
     )
 
+
 @pytest.fixture
 def admin(django_user_model, password):
     return django_user_model.objects.create_user(
@@ -51,6 +52,7 @@ def another_token(another_user):
     from rest_framework.authtoken.models import Token
     token, _ = Token.objects.get_or_create(user=another_user)
     return token.key
+
 
 @pytest.fixture
 def admin_token(admin):

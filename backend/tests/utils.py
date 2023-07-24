@@ -17,11 +17,11 @@ def check_fields_in_response(fields, response_json, url):
 def check_only_safe_methods_allowed(user_client, url):
     '''Проверяет, что с помощью эндпоинта нет возможности изменить объект'''
     responses = [
-            user_client.post(url),
-            user_client.patch(url),
-            user_client.put(url),
-            user_client.delete(url),
-        ]
+        user_client.post(url),
+        user_client.patch(url),
+        user_client.put(url),
+        user_client.delete(url),
+    ]
     for response in responses:
         assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED, (
             'Убедитесь, что в ответ на небезопасные методы к '

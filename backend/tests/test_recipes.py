@@ -114,9 +114,9 @@ class TestRecipesAPI:
 
         ingredients = recipe['ingredients']
         assert len(ingredients) == recipe_1.ingredients.count(), (
-                f'Проверьте, что в ответ на GET-запрос к `{self.recipes_url}`'
-                f'для каждого рецепта выведены все ингредиенты'
-            )
+            f'Проверьте, что в ответ на GET-запрос к `{self.recipes_url}`'
+            f'для каждого рецепта выведены все ингредиенты'
+        )
 
         ingredient = ingredients[0]
         ingredient_fields = {
@@ -226,9 +226,9 @@ class TestRecipesAPI:
 
         ingredients = recipe['ingredients']
         assert len(ingredients) == recipe_1.ingredients.count(), (
-                f'Проверьте, что в ответ на GET-запрос к `{recipe_detail_url}`'
-                f'для каждого рецепта выведены все ингредиенты'
-            )
+            f'Проверьте, что в ответ на GET-запрос к `{recipe_detail_url}`'
+            f'для каждого рецепта выведены все ингредиенты'
+        )
 
         ingredient = ingredients[0]
         ingredient_fields = {
@@ -378,9 +378,9 @@ class TestRecipesAPI:
         )
 
         assert Recipe.objects.count() == recipes_count, (
-                'Проверьте, что POST-запрос с данными, содержащими '
-                'некорректные данные не создаёт рецепт'
-            )
+            'Проверьте, что POST-запрос с данными, содержащими '
+            'некорректные данные не создаёт рецепт'
+        )
 
     def test_recipe_create_with_valid_data(
             self, user_client, ingredient_1, ingredient_2,
@@ -614,10 +614,10 @@ class TestRecipesAPI:
         }
 
         response = user_client.patch(
-                recipe_detail_url,
-                data=json.dumps(valid_data),
-                content_type='application/json'
-            )
+            recipe_detail_url,
+            data=json.dumps(valid_data),
+            content_type='application/json'
+        )
         recipe = Recipe.objects.get(id=recipe_1.id)
 
         assert response.status_code == HTTPStatus.OK, (
@@ -654,8 +654,8 @@ class TestRecipesAPI:
         )
 
     def test_admin_patch_recipes_with_valid_data(
-                self, admin_user_client, recipe_1, ingredient_1, ingredient_2,
-                tag_1, tag_2, mock_media
+        self, admin_user_client, recipe_1, ingredient_1, ingredient_2,
+        tag_1, tag_2, mock_media
     ):
         '''Проверка, что PATCH-запрос админа с валидными данными
         изменяет рецепт'''
@@ -680,10 +680,10 @@ class TestRecipesAPI:
         }
 
         response = admin_user_client.patch(
-                recipe_detail_url,
-                data=json.dumps(valid_data),
-                content_type='application/json'
-            )
+            recipe_detail_url,
+            data=json.dumps(valid_data),
+            content_type='application/json'
+        )
         recipe = Recipe.objects.get(id=recipe_1.id)
 
         assert response.status_code == HTTPStatus.OK, (
@@ -746,10 +746,10 @@ class TestRecipesAPI:
         }
 
         response = another_user_client.patch(
-                recipe_detail_url,
-                data=json.dumps(valid_data),
-                content_type='application/json'
-            )
+            recipe_detail_url,
+            data=json.dumps(valid_data),
+            content_type='application/json'
+        )
         assert response.status_code == HTTPStatus.FORBIDDEN, (
             f'Проверьте, что PATCH-запрос к `{recipe_detail_url}` '
             'от пользователя, не являющегося автором рецепта'
