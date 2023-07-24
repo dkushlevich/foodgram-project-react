@@ -19,7 +19,7 @@ class RecipeFilter(FilterSet):
         fields = ('tags', 'author',)
 
     def is_favorited_filter(self, queryset, name, value):
-        if value and self.user.is_authenticated:
+        if value and self.request.user.is_authenticated:
             return queryset.filter(favorite__user=self.request.user)
         return queryset
 
