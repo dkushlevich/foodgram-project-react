@@ -75,8 +75,8 @@ def recipe_1(user, tag_1):
 def recipe_2(user, tag_1, tag_2):
     image = tempfile.NamedTemporaryFile(suffix=".jpg").name
     recipe = Recipe.objects.create(
-        name='TestRecipe',
-        text='TextTestRecipe',
+        name='TestRecipe2',
+        text='TextTestRecipe2',
         cooking_time=150,
         author=user,
         image=image
