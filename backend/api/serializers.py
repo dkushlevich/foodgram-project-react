@@ -97,6 +97,12 @@ class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         exclude = ('pub_date', )
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Recipe.objects.all(),
+                fields=['author', 'name', 'text', 'cooking_time']
+            )
+        ]
 
     def is_authenticated(func):
         def wrapper(self, obj):

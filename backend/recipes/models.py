@@ -179,3 +179,9 @@ class Recipe(StringRepresentationMixin, models.Model):
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
         ordering = ('-pub_date',)
+        constraints = [
+            models.UniqueConstraint(
+                fields=['author', 'name', 'text', 'cooking_time'],
+                name='unique_recipe'
+            ),
+        ]
