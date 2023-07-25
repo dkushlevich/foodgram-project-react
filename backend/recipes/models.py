@@ -55,14 +55,16 @@ class Ingredient(StringRepresentationMixin, models.Model):
 class Tag(StringRepresentationMixin, models.Model):
     name = models.CharField(
         verbose_name='название',
-        max_length=settings.MAX_LENGTH_TAG_NAME
+        max_length=settings.MAX_LENGTH_TAG_NAME,
+        unique=True
     )
     color = models.CharField(
         verbose_name='HEX цвет',
         max_length=settings.MAX_LENGTH_TAG_COLOR,
         validators=(hex_color_validator,),
+        unique=True
     )
-    slug = models.SlugField(verbose_name='slug',)
+    slug = models.SlugField(verbose_name='slug', unique=True)
 
     class Meta:
         verbose_name = 'Тег'
