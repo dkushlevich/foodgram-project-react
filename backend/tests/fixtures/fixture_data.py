@@ -20,7 +20,7 @@ def mock_media(settings):
 def tag_1():
     return Tag.objects.create(
         name='TestTag1',
-        slug='TestTagSlug2',
+        slug='TestTagSlug1',
         color='#b03f95'
     )
 
