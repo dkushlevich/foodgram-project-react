@@ -27,7 +27,7 @@ Foodgram - онлайн-сервис, представляющий собой п
 ![Image](https://github.com/dkushlevich/Dkushlevich/blob/main/images/Foodgram_ER.png?raw=true)
 
 
-## Подготовка сервера к деплою проекта
+## Подготовка сервера и деплой проекта
 
 1. Создать директорию foodgram/ в домашней директории сервера.
 
