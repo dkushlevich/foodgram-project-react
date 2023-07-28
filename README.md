@@ -1,8 +1,3 @@
-Домен https://foodgram.servehttp.com/
-Логин: admin
-Почта: admin@gmail.com
-Пароль: admin
-
 <div align=center>
   
   # [Foodgram](https://foodgram.servehttp.com/) продуктовый помощник
