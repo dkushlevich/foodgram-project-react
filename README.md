@@ -1,6 +1,6 @@
 <div align=center>
   
-  # [Foodgram](https://foodgram.servehttp.com/) продуктовый помощник
+  # Foodgram <br> продуктовый помощник
   
   [![Foodgram_CI/CD](https://github.com/dkushlevich/foodgram-project-react/workflows/Foodgram_CI/CD/badge.svg)](https://github.com/dkushlevich/kittygram_final/workflows/CICD-Kittygram/badge.svg)
   
